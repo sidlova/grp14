@@ -1,0 +1,73 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+  }
+
+  .container {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 30px;
+    border-radius: 5px;
+    background-color: #fff;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  h1 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  /* Form styles */
+  .form-group {
+    margin-bottom: 15px;
+  }
+
+  .form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+
+  .form-control {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+
+  /* Flash messages */
+  .flashes {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .flash {
+    padding: 10px 20px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+  }
+
+  .flash.success {
+    background-color: #dff0d8;
+    color: #3c763d; /* Green for success messages */
+  }
+
+  .flash.error {
+    background-color: #f2dede;
+    color: #a94442; /* Red for error messages */
+  }
+
+  /* Button styles */
+  .button-container {
+    text-align: center;
+    margin-top: 20px;
+  }
+
+  .btn-primary {
+    background-color: #337ab7; /* Primary button color */
+    border-color: #337ab7; /* Adjust border color for consistency */
+    padding: 10px 20px;
+    border-radius: 4px;
+  }

@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+
+{% block styles %}
+<style>
+  .card-deck {
+      display: grid;
+      grid-template-columns: repeat( minmax(250px, 1fr));
+      grid-gap: 1rem;
+  }
+  
+  .financial-aid-card {
+      background-color: rgb(238, 235, 235);
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      padding: 1rem;
+      margin-bottom: 1rem;
+  }
+  
+  .financial-aid-card h5 {
+      margin-top: 0;
+      font-size: 1.5rem;
+  }
+  
+  .financial-aid-card p {
+      margin-bottom: 0;
+  }
+  
+  .financial-aid-card a {
+      color: #007bff;
+      text-decoration: none;
+  }
+  
+  .financial-aid-card a:hover {
+      text-decoration: underline;
+  }
+  
+  footer {
+      background-color: #333;
+      color: white;
+      padding: 2rem 0;
+      text-align: center;
+  }
+  
+  footer p {
+      margin: 0;
+  }
+  
+  footer a {
+      color: white;
+      text-decoration: none;
+  }
+  
+  .search-form {
+      flex-grow: 1;
+      margin-left: auto;
+  }
+  
+  .search-form input[type="search"] {
+      padding: 0.25rem 0.5rem;
+      border-radius: 1rem;
+      border: 1px solid #ced4da;
+  }
+</style>
+{% endblock %}
+
+{% block title %}Saved Financial Aids{% endblock %}
+
+{% block content %}
+<br>
+<div class="card">
+  <div class="card-body">
+    <h1 align="center">Saved Financial Aids</h1>
+    <br>
+    <form class="d-flex">
+      <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search_term">
+      <button class="btn btn-outline-success" type="submit">Search</button>
+    </form>
+    <br>
+
+    {% if current_user.is_authenticated %}
+      <div class="card-deck">
+        {% for financial_aid in saved_financial_aid %}
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">{{ financial_aid.title }}</h5>
+              <p class="card-text">{{ financial_aid.description }}</p>
+              <p style="color: rgb(250, 2, 2);font-weight: semibold;">Closing Date: {{ financial_aid.deadline }}</p>
+              <a href="{{ url_for('views.get_financial_aid', financial_aid_id=financial_aid.id) }}" class="btn btn-primary">View Details</a>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+
+      {% if not saved_financial_aid %}
+        <p>No saved financial aids found.</p>
+      {% endif %}
+    {% else %}
+      <p>Please log in to view your saved financial aids.</p>
+    {% endif %}
+  </div>
+</div>
+<br>
+{% endblock %}

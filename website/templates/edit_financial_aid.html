@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edit Financial Aid</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+  <style>
+    /* Base styles for modern look */
+    body {
+      font-family: sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 700px; /* Adjust width as needed */
+      margin: 50px auto; /* Center the container horizontally */
+      padding: 30px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      background-color: #f5f5f5;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    .form-label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box; /* Include padding in width calculation */
+    }
+
+    .button-container {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .btn-primary {
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Edit Scholarship</h1>
+
+    <form action="{{ url_for('views.edit_financial_aid', financial_aid_id=financial_aid_id) }}" method="POST">
+      <div class="form-group">
+        <label for="title" class="form-label">Title:</label>
+        <input type="text" name="title" id="title" class="form-control" value="{{ title }}">
+      </div>
+      <div class="form-group">
+        <label for="type" class="form-label">Type:</label>
+        <select name="type" id="type" class="form-control" required>
+          <option value="">Select Type</option>
+          <option value="Bursary">Bursary</option>
+          <option value="Scholarship">Scholarship</option>
+          <option value="Grant">Grant</option>
+          <option value="Internship">Internship</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="description" class="form-label">Description:</label>
+        <textarea name="description" id="description" class="form-control">{{ description }}</textarea>
+      </div>
+      <div class="form-group">
+        <label for="opening_date" class="form-label">Opening Date:</label>
+        <input type="date" name="opening_date" id="opening_date" class="form-control" value="{{ opening_date }}">
+      </div>
+      <div class="form-group">
+        <label for="deadline" class="form-label">Deadline:</label>
+        <input type="date" name="deadline" id="deadline" class="form-control" value="{{ deadline }}">
+      </div>
+      <div class="form-group">
+        <label for="eligibility_criteria" class="form-label">Eligibility Criteria:</label>
+        <textarea name="eligibility_criteria" id="eligibility_criteria" class="form-control">{{ eligibility_criteria }}</textarea>
+      </div>
+      <div class="form-group">
+        <label for="contact_details" class="form-label">Contact Details:</label>
+        <input type="text" name="contact_details" id="contact_details" class="form-control" value="{{ contact_details }}">
+      </div>
+      <div class="form-group">
+        <label for="link_to_more_information" class="form-label">Link to More Information:</label>
+        <input type="url" name="link_to_more_information" id="link_to_more_information" class="form-control" value="{{ link_to_more_information }}">
+      </div>
+
+      <div class="button-container">
+        <button type="submit" class="btn btn-primary">Update Scholarship</button>
+      </div>
+    </form>
+  </div>
+</body>
+</html>

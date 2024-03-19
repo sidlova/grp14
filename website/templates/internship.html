@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}Financial Aids{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <div class="container-section">
+      <h2 align="center">{{ aid.title }}</h2>
+      <p style="font-style:oblique;">Description:</p>
+        <p> {{ aid.description }}</p>
+      <p style="font-style:oblique;">Eligibility Criteria: </p>
+      <p>{{ aid.eligibility_criteria}}</p>
+      <p style="color: green;font-weight: semibold;">Opening Date: {{ aid.opening_date }}</p>
+      <p style="color: rgb(250, 2, 2);font-weight: semibold;">Closing Date: {{ aid.deadline }}</p>
+      <p style="font-style:oblique;">Contact Details: {{ aid.contact_details }}</p>
+      <p>Link to More Information: <a href="{{ aid.link_to_more_information }}">More Info</a></p>
+      <br>
+      <div class="button-container">
+        <form action="{{ url_for('views.save_financial_aid', financial_aid_id=aid.id) }}" method="post">
+          <button class="btn btn-primary">Save Financial Aid</button>
+        </form>
+      </div>
+    </div>
+  </div>
+{% endblock %}

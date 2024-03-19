@@ -1,0 +1,163 @@
+{% extends "base.html" %}
+
+{% block styles %}
+<style>
+    .financial-aid-card {
+        background-color: rgb(238, 235, 235);
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        padding: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    .financial-aid-card h3 {
+        margin-top: 0;
+    }
+
+    .financial-aid-card p {
+        margin-bottom: 0;
+    }
+
+    .financial-aid-card a {
+        color: #007bff;
+        text-decoration: none;
+    }
+
+    .financial-aid-card a:hover {
+        text-decoration: underline;
+    }
+
+    footer {
+              background-color: #333;
+              color: white;
+              padding: 2rem 0;
+              text-align: center;
+          }
+        
+          footer p {
+              margin: 0;
+          }
+        
+          footer a {
+              color: white;
+              text-decoration: none;
+          }
+          .search-form {
+  flex-grow: 1;
+  margin-left: auto;
+}
+
+.search-form input[type="search"] {
+  padding: 0.25rem 0.5rem;
+  border-radius: 1rem;
+  border: 1px solid #ced4da;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.search-form input[type="search"]:focus {
+  border-color: #80bdff;
+  box-shadow: 0 0 0 0.25rem rgba(0, 123, 255, 0.25);
+}
+
+.search-form button {
+  padding: 0.25rem 0.5rem;
+  font-size: 0.75rem;
+  border-radius: 1rem;
+}
+
+.search-form button:hover {
+  background-color: #28a745;
+  border-color: #28a745;
+}
+
+.search-form button:focus {
+  box-shadow: none;
+}
+</style>
+{% endblock %}
+
+
+{% block navbar %}
+
+{% endblock %}
+
+{% block title %}Financial Aids{% endblock %}
+
+{% block content %}
+<br>
+
+<form class="d-flex" action="{{ url_for('views.search_financial_aid') }}" method="GET">
+  <input class="form-control me-2" type="search" name="search_query" placeholder="Search" aria-label="Search">
+  <button class="btn btn-outline-success" type="submit">Search</button>
+</form>
+
+<div class="container">
+  {% if scholarships %}
+    <h2>Scholarships</h2>
+    <div class="row">
+      {% for aid in scholarships %}
+        <div class="col-md-4">
+          <div class="financial-aid-card">
+            <h3><a href="{{ url_for('views.get_scholarship', financial_aid_id=aid.id) }}">{{ aid.title }}</a></h3>
+            <p>Description: {{ aid.description }}</p>
+            <p style="color: rgb(250, 2, 2);font-weight: semibold;">Closing Date: {{ aid.deadline }}</p>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    <p>No scholarships available at this time.</p>
+  {% endif %}
+
+  {% if bursaries%}
+    <h2>Bursaries</h2>
+    <div class="row">
+      {% for aid in bursaries %}
+        <div class="col-md-4">
+          <div class="financial-aid-card">
+            <h3><a href="{{ url_for('views.get_bursary', financial_aid_id=aid.id) }}">{{ aid.title }}</a></h3>
+            <p>Description: {{ aid.description }}</p>
+            <p style="color: rgb(250, 2, 2);font-weight: semibold;">Closing Date: {{ aid.deadline }}</p>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    <p>No bursaries available at this time.</p>
+  {% endif %}
+
+  {% if grants %}
+    <h2>Grants</h2>
+    <div class="row">
+      {% for aid in grants %}
+        <div class="col-md-4">
+          <div class="financial-aid-card">
+            <h3><a href="{{ url_for('views.get_grant', financial_aid_id=aid.id) }}">{{ aid.title }}</a></h3>
+            <p>Description: {{ aid.description }}</p>
+            <p style="color: rgb(250, 2, 2);font-weight: semibold;">Closing Date: {{ aid.deadline }}</p>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    <p>No grants available at this time.</p>
+  {% endif %}
+
+  {% if internships %}
+    <h2>Internships</h2>
+    <div class="row">
+      {% for aid in internships %}
+        <div class="col-md-4">
+          <div class="financial-aid-card">
+            <h3><a href="{{ url_for('views.get_internship', financial_aid_id=aid.id) }}">{{ aid.title }}</a></h3>
+            <p>Description: {{ aid.description }}</p>
+            <p style="color: rgb(250, 2, 2);font-weight: semibold;">Closing Date: {{ aid.deadline }}</p>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    <p>No internships available at this time.</p>
+  {% endif %}
+</div>
+{% endblock %}

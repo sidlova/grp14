@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block title %}Search Results{% endblock %}
+
+{% block styles %}
+<style>
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+    
+        footer p {
+            margin: 0;
+        }
+    
+        footer a {
+            color: white;
+            text-decoration: none;
+        }
+</style>
+{% endblock %}
+
+{% block content %}
+  <div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <h1 class="text-center mb-4">Search Results for "{{ search_query }}"</h1>
+        {% if financial_aid_list %}
+          <div class="row">
+          {% for financial_aid in financial_aid_list %}
+            <div class="col-md-6">
+              <div class="card mb-4">
+                <div class="card-body">
+                  <h5 class="card-title">
+                    <a href="{{ url_for('views.get_financial_aid', financial_aid_id=financial_aid.id) }}">{{ financial_aid.title }}</a>
+                  </h5>
+                  <p class="card-text">{{ financial_aid.description }}</p>
+                  <p class="card-text"><strong>Deadline:</strong> {{ financial_aid.deadline }}</p>
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+          </div>
+        {% else %}
+          <p class="lead text-center">No financial aids found for "{{ search_query }}".</p>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+{% endblock %}

@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+
+{% block styles %}
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    .admin-dashboard {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      margin-top: 30px;
+    }
+    
+    .admin-dashboard .card {
+      width: 48%;
+      margin-bottom: 20px;
+    }
+    
+    @media (max-width: 768px) {
+      .admin-dashboard .card {
+        width: 100%;
+      }
+    }
+    footer {
+              background-color: #333;
+              color: white;
+              padding: 2rem 0;
+              text-align: center;
+          }
+        
+          footer p {
+              margin: 0;
+          }
+        
+          footer a {
+              color: white;
+              text-decoration: none;
+          }
+          #logout-item {
+  margin-left: auto;
+}
+  </style>
+{% endblock %}
+{% block navbar %}
+{% if user.is_authenticated %}
+<li class="nav-item" id="logout-item">
+  <a class="nav-link" id="logout" href="/logout">Logout</a>
+</li>
+{% endif %}
+{% endblock %}
+
+{% block content %}
+  <br>
+  <div class="container">
+    <div class="card">
+      <div class="card-header">
+        <h1 class="mt-5" align="center">Admin Dashboard</h1>
+      </div>
+      <div class="card-body">
+        <div class="admin-dashboard">
+          <div class="card">
+            <div class="card-body text-center">
+              <h2>Manage Financial Aids</h2>
+              <a href="{{ url_for('views.admin_view') }}" class="btn btn-primary btn-lg mt-3">Go to Financial Aids</a>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-body text-center">
+              <h2>Manage Users</h2>
+              <a href="{{ url_for('views.admin_view_users') }}" class="btn btn-primary btn-lg mt-3">Go to Users</a>
+            </div>
+          </div>
+       </div>
+      </div>
+    </div>
+  </div>
+  <br>
+{% endblock %}
